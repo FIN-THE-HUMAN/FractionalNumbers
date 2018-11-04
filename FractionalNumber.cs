@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Encryption
 {
@@ -66,49 +66,57 @@ namespace Encryption
         public static FractionalNumber operator +(FractionalNumber f1, FractionalNumber f2)
         {
             FractionalNumber n = new FractionalNumber();
+            int numerator;
+            int denumerator;
             if (f1.Denominator == f2.Denominator)
             {
-                n.Denominator = f1.Denominator;
-                n.Numerator = f1.Numerator + f2.Numerator;
+
+                numerator = f1.Numerator + f2.Numerator;
+                denumerator = f1.Denominator;
             }
             else
             {
-                int numerator = f2.Denominator * f1.Numerator + f2.Numerator * f1.Denominator;
-                int denumerator = f1.Denominator * f2.Denominator;
-                int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-                if (denumerator < 0)
-                {
-                    denumerator = denumerator * -1;
-                    numerator = numerator * -1;
-                }
-                n.Numerator = numerator / gcd;
-                n.Denominator = denumerator / gcd;
+                numerator = f2.Denominator * f1.Numerator + f2.Numerator * f1.Denominator;
+                denumerator = f1.Denominator * f2.Denominator;
             }
 
+            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            if (denumerator < 0)
+            {
+                denumerator = denumerator * -1;
+                numerator = numerator * -1;
+            }
+            n.Numerator = numerator / gcd;
+            n.Denominator = denumerator / gcd;
+            
             return n;
         }
 
         public static FractionalNumber operator -(FractionalNumber f1, FractionalNumber f2)
         {
             FractionalNumber n = new FractionalNumber();
+            int numerator;
+            int denumerator;
             if (f1.Denominator == f2.Denominator)
             {
-                n.Denominator = f1.Denominator;
-                n.Numerator = f1.Numerator - f2.Numerator;
+
+                numerator = f1.Numerator - f2.Numerator;
+                denumerator = f1.Denominator;
             }
             else
             {
-                int numerator = f2.Denominator * f1.Numerator - f2.Numerator * f1.Denominator;
-                int denumerator = f1.Denominator * f2.Denominator;
-                int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-                if (denumerator < 0)
-                {
-                    denumerator = denumerator * -1;
-                    numerator = numerator * -1;
-                }
-                n.Numerator = numerator / gcd;
-                n.Denominator = denumerator / gcd;
+                numerator = f2.Denominator * f1.Numerator - f2.Numerator * f1.Denominator;
+                denumerator = f1.Denominator * f2.Denominator;
             }
+
+            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            if (denumerator < 0)
+            {
+                denumerator = denumerator * -1;
+                numerator = numerator * -1;
+            }
+            n.Numerator = numerator / gcd;
+            n.Denominator = denumerator / gcd;
 
             return n;
         }
