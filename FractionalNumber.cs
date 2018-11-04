@@ -335,6 +335,11 @@ namespace Encryption
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
         }
 
+        public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, double coef)
+        {
+            return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
+        }
+
         public override string ToString()
         {
             return $"{Numerator}/{Denominator}";
