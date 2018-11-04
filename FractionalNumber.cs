@@ -320,6 +320,16 @@ namespace Encryption
             return f1.ToFractional() * f2;
         }
 
+        public static FractionalNumber operator *(FractionalNumber f1, double f2)
+        {
+            return f1 * f2.ToFractional();
+        }
+
+        public static FractionalNumber operator *(double f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() * f2;
+        }
+
         public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, float coef)
         {
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
