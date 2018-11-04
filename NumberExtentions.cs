@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +48,24 @@ namespace Encryption
             {
                 return FractionalNumber.GetInstance(
                     Convert.ToInt32(wholeAndReduce[0] + wholeAndReduce[1]), 
+                    (int)Math.Pow(10, wholeAndReduce[1].Length)
+                );
+            }
+        }
+
+        public static FractionalNumber ToFractional(this double f)
+        {
+            string number = f.ToString();
+            var wholeAndReduce = number.Slice(',');
+
+            if (wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
+            {
+                return FractionalNumber.GetInstance((int)f, 1);
+            }
+            else
+            {
+                return FractionalNumber.GetInstance(
+                    Convert.ToInt32(wholeAndReduce[0] + wholeAndReduce[1]),
                     (int)Math.Pow(10, wholeAndReduce[1].Length)
                 );
             }
