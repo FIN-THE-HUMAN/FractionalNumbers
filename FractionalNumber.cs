@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Encryption
 {
@@ -37,7 +37,7 @@ namespace Encryption
             Numerator = n.Numerator;
             Denominator = n.Denominator;
         }
-        
+
         public FractionalNumber(FractionalNumber n)
         {
             Numerator = n.Numerator;
@@ -237,6 +237,26 @@ namespace Encryption
             return f1.ToDouble() <= f2;
         }
 
+        public static FractionalNumber operator +(FractionalNumber f1, float f2)
+        {
+            return f1 + f2.ToFractional();
+        }
+
+        public static FractionalNumber operator +(float f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() + f2;
+        }
+
+        public static FractionalNumber operator -(FractionalNumber f1, float f2)
+        {
+            return f1 - f2.ToFractional();
+        }
+
+        public static FractionalNumber operator -(float f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() - f2;
+        }
+
         public static FractionalNumber operator *(FractionalNumber f1, float f2)
         {
             return f1 * f2.ToFractional();
@@ -247,6 +267,36 @@ namespace Encryption
             return f1.ToFractional() * f2;
         }
 
+        public static FractionalNumber operator /(FractionalNumber f1, float f2)
+        {
+            return f1 / f2.ToFractional();
+        }
+
+        public static FractionalNumber operator /(float f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() / f2;
+        }
+
+        public static FractionalNumber operator +(FractionalNumber f1, double f2)
+        {
+            return f1 + f2.ToFractional();
+        }
+
+        public static FractionalNumber operator +(double f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() + f2;
+        }
+
+        public static FractionalNumber operator -(FractionalNumber f1, double f2)
+        {
+            return f1 - f2.ToFractional();
+        }
+
+        public static FractionalNumber operator -(double f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() - f2;
+        }
+
         public static FractionalNumber operator *(FractionalNumber f1, double f2)
         {
             return f1 * f2.ToFractional();
@@ -255,6 +305,16 @@ namespace Encryption
         public static FractionalNumber operator *(double f1, FractionalNumber f2)
         {
             return f1.ToFractional() * f2;
+        }
+
+        public static FractionalNumber operator /(FractionalNumber f1, double f2)
+        {
+            return f1 / f2.ToFractional();
+        }
+
+        public static FractionalNumber operator /(double f1, FractionalNumber f2)
+        {
+            return f1.ToFractional() / f2;
         }
 
         public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, float coef)
