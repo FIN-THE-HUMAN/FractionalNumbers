@@ -23,7 +23,6 @@ namespace Encryption
                 numerator = numerator * -1;
             }
 
-            FractionalNumber n = new FractionalNumber();
             int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             Numerator = numerator / gcd;
             Denominator = denumerator / gcd;
