@@ -56,7 +56,7 @@ namespace Encryption
         public static FractionalNumber ToFractional(this double f)
         {
             string number = f.ToString();
-            var wholeAndReduce = number.Slice(',');
+            var wholeAndReduce = number.Split(',');
 
             if (wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
             {
