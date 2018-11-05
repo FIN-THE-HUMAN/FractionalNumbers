@@ -317,6 +317,86 @@ namespace Encryption
             return f1.ToFractional() / f2;
         }
 
+        public static bool operator >(float f1, FractionalNumber f2)
+        {
+            return f1 > f2.ToDouble();
+        }
+
+        public static bool operator <(float f1, FractionalNumber f2)
+        {
+            return f1 < f2.ToDouble();
+        }
+
+        public static bool operator >=(float f1, FractionalNumber f2)
+        {
+            return f1 >= f2.ToDouble();
+        }
+
+        public static bool operator <=(float f1, FractionalNumber f2)
+        {
+            return f1 <= f2.ToDouble();
+        }
+
+        public static bool operator >(FractionalNumber f1, float f2)
+        {
+            return f1.ToDouble() > f2;
+        }
+
+        public static bool operator <(FractionalNumber f1, float f2)
+        {
+            return f1.ToDouble() < f2;
+        }
+
+        public static bool operator >=(FractionalNumber f1, float f2)
+        {
+            return f1.ToDouble() >= f2;
+        }
+
+        public static bool operator <=(FractionalNumber f1, float f2)
+        {
+            return f1.ToDouble() <= f2;
+        }
+
+        public static bool operator >(double f1, FractionalNumber f2)
+        {
+            return f1 > f2.ToDouble();
+        }
+
+        public static bool operator <(double f1, FractionalNumber f2)
+        {
+            return f1 < f2.ToDouble();
+        }
+
+        public static bool operator >=(double f1, FractionalNumber f2)
+        {
+            return f1 >= f2.ToDouble();
+        }
+
+        public static bool operator <=(double f1, FractionalNumber f2)
+        {
+            return f1 <= f2.ToDouble();
+        }
+
+        public static bool operator >(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() > f2;
+        }
+
+        public static bool operator <(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() < f2;
+        }
+
+        public static bool operator >=(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() >= f2;
+        }
+
+        public static bool operator <=(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() <= f2;
+        }
+
         public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, float coef)
         {
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
