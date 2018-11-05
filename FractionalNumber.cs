@@ -37,6 +37,12 @@ namespace Encryption
             Numerator = n.Numerator;
             Denominator = n.Denominator;
         }
+        
+        public FractionalNumber(FractionalNumber n)
+        {
+            Numerator = n.Numerator;
+            Denominator = n.Denominator;
+        }
 
         public float ToFloat()
         {
