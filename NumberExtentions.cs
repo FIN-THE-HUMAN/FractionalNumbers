@@ -11,12 +11,12 @@ namespace Encryption
     {
         public static bool IsEven(this int number)
         {
-            return number % 2 == 0 ? true : false;
+            return number % 2 == 0;
         }
 
         public static bool IsOdd(this int number)
         {
-            return number % 2 == 0 ? false : true;
+            return number % 2 == 1;
         }
 
         public static string ToAlgebraic(this Complex c)
