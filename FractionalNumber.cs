@@ -13,6 +13,16 @@ namespace Encryption
             Denominator = 1;
         }
 
+        private static FractionalNumber Create(int numerator, int denumerator)
+        {
+            FractionalNumber n = new FractionalNumber();
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int sign = Math.Sign(denumerator);
+            n.Numerator = numerator / gcd * sign;
+            n.Denominator = denumerator / gcd * sign;
+            return n;
+        }
+
         public FractionalNumber(int numerator, int denumerator)
         {
             if (denumerator == 0) throw new DivideByZeroException();
@@ -22,10 +32,9 @@ namespace Encryption
                 Denominator = 1;
             }
 
-            int sign = Math.Sign(denumerator);
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            Numerator = numerator / gcd * sign;
-            Denominator = denumerator / gcd * sign;
+            FractionalNumber n = Create(numerator, denumerator);
+            Numerator = n.Numerator;
+            Denominator = n.Denominator;
         }
 
         public float ToFloat()
@@ -40,7 +49,6 @@ namespace Encryption
 
         public static FractionalNumber operator +(FractionalNumber f1, FractionalNumber f2)
         {
-            FractionalNumber n = new FractionalNumber();
             int numerator;
             int denumerator;
             if (f1.Denominator == f2.Denominator)
@@ -55,21 +63,11 @@ namespace Encryption
                 denumerator = f1.Denominator * f2.Denominator;
             }
 
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            if (denumerator < 0)
-            {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
-            }
-            n.Numerator = numerator / gcd;
-            n.Denominator = denumerator / gcd;
-            
-            return n;
+            return Create(numerator, denumerator);
         }
 
         public static FractionalNumber operator -(FractionalNumber f1, FractionalNumber f2)
         {
-            FractionalNumber n = new FractionalNumber();
             int numerator;
             int denumerator;
             if (f1.Denominator == f2.Denominator)
@@ -84,51 +82,22 @@ namespace Encryption
                 denumerator = f1.Denominator * f2.Denominator;
             }
 
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            if (denumerator < 0)
-            {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
-            }
-            n.Numerator = numerator / gcd;
-            n.Denominator = denumerator / gcd;
-
-            return n;
+            return Create(numerator, denumerator);
         }
 
         public static FractionalNumber operator *(FractionalNumber f1, FractionalNumber f2)
         {
-            FractionalNumber n = new FractionalNumber();
             int numerator = f1.Numerator * f2.Numerator;
             int denumerator = f1.Denominator * f2.Denominator;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            if (denumerator < 0)
-            {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
-            }
-            n.Numerator = numerator / gcd;
-            n.Denominator = denumerator / gcd;
-
-            return n;
+            return Create(numerator, denumerator);
         }
 
         public static FractionalNumber operator /(FractionalNumber f1, FractionalNumber f2)
         {
             if (f2.Numerator == 0) throw new DivideByZeroException();
-            FractionalNumber n = new FractionalNumber();
             int numerator = f1.Numerator * f2.Denominator;
             int denumerator = f1.Denominator * f2.Numerator;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            if (denumerator < 0)
-            {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
-            }
-            n.Numerator = numerator / gcd;
-            n.Denominator = denumerator / gcd;
-
-            return n;
+            return Create(numerator, denumerator);
         }
 
         public static FractionalNumber operator +(FractionalNumber f1, int f2)
@@ -155,27 +124,15 @@ namespace Encryption
 
         public static FractionalNumber operator *(FractionalNumber f1, int f2)
         {
-            FractionalNumber n = new FractionalNumber();
-
             int numerator = f1.Numerator * f2;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
-            n.Numerator = numerator / gcd;
-            n.Denominator = f1.Denominator / gcd;
-
-            return n;
+            return Create(numerator, f1.Denominator);
         }
 
         public static FractionalNumber operator /(FractionalNumber f1, int f2)
         {
             if (f2 == 0) throw new DivideByZeroException();
-            FractionalNumber n = new FractionalNumber();
-
             int denomirator = f1.Denominator * f2;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(f1.Numerator), Math.Abs(denomirator));
-            n.Numerator = f1.Numerator / gcd;
-            n.Denominator = denomirator / gcd;
-
-            return n;
+            return Create(f1.Numerator, denomirator);
         }
 
         public static FractionalNumber operator +(int f2, FractionalNumber f1)
@@ -202,27 +159,15 @@ namespace Encryption
 
         public static FractionalNumber operator *(int f2, FractionalNumber f1)
         {
-            FractionalNumber n = new FractionalNumber();
-
             int numerator = f1.Numerator * f2;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
-            n.Numerator = numerator / gcd;
-            n.Denominator = f1.Denominator / gcd;
-
-            return n;
+            return Create(numerator, f1.Denominator);
         }
 
         public static FractionalNumber operator /(int f2, FractionalNumber f1)
         {
             if (f1.Numerator == 0) throw new DivideByZeroException();
-            FractionalNumber n = new FractionalNumber();
-
             int numerator = f1.Denominator * f2;
-            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Numerator));
-            n.Numerator = numerator / gcd;
-            n.Denominator = f1.Numerator / gcd;
-
-            return n;
+            return Create(numerator, f1.Numerator);
         }
 
         public static bool operator >(FractionalNumber f1, FractionalNumber f2)
