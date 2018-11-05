@@ -40,7 +40,7 @@ namespace Encryption
             string number = f.ToString();
             var wholeAndReduce = number.Split(',');
 
-            if(wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
+            if(wholeAndReduce.Length < 2)
             {
                 return new FractionalNumber((int)f, 1);
             }
@@ -58,7 +58,7 @@ namespace Encryption
             string number = f.ToString();
             var wholeAndReduce = number.Split(',');
 
-            if (wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
+            if (wholeAndReduce.Length < 2)
             {
                 return new FractionalNumber((int)f, 1);
             }
