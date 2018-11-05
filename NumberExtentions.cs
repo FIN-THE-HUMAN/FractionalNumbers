@@ -38,15 +38,15 @@ namespace Encryption
         public static FractionalNumber ToFractional(this float f)
         {
             string number = f.ToString();
-            var wholeAndReduce = number.Slice(',');
+            var wholeAndReduce = number.Split(',');
 
             if(wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
             {
-                return FractionalNumber.GetInstance((int)f, 1);
+                return new FractionalNumber((int)f, 1);
             }
             else
             {
-                return FractionalNumber.GetInstance(
+                return new FractionalNumber(
                     Convert.ToInt32(wholeAndReduce[0] + wholeAndReduce[1]), 
                     (int)Math.Pow(10, wholeAndReduce[1].Length)
                 );
@@ -60,11 +60,11 @@ namespace Encryption
 
             if (wholeAndReduce[wholeAndReduce.Length - 1].IsEmpty())
             {
-                return FractionalNumber.GetInstance((int)f, 1);
+                return new FractionalNumber((int)f, 1);
             }
             else
             {
-                return FractionalNumber.GetInstance(
+                return new FractionalNumber(
                     Convert.ToInt32(wholeAndReduce[0] + wholeAndReduce[1]),
                     (int)Math.Pow(10, wholeAndReduce[1].Length)
                 );
