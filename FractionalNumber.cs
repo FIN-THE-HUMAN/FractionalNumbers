@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Encryption
 {
@@ -23,26 +23,9 @@ namespace Encryption
                 numerator = numerator * -1;
             }
 
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             Numerator = numerator / gcd;
             Denominator = denumerator / gcd;
-        }
-
-        private static int GetGreatestCommonDivisor(int a, int b)
-        {
-            while (a != 0 && b != 0)
-            {
-                if (a > b)
-                {
-                    a = a % b;
-                }
-                else
-                {
-                    b = b % a;
-                }
-            }
-
-            return a + b;
         }
 
         public float ToFloat()
@@ -72,7 +55,7 @@ namespace Encryption
                 denumerator = f1.Denominator * f2.Denominator;
             }
 
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             if (denumerator < 0)
             {
                 denumerator = denumerator * -1;
@@ -101,7 +84,7 @@ namespace Encryption
                 denumerator = f1.Denominator * f2.Denominator;
             }
 
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             if (denumerator < 0)
             {
                 denumerator = denumerator * -1;
@@ -118,7 +101,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
             int numerator = f1.Numerator * f2.Numerator;
             int denumerator = f1.Denominator * f2.Denominator;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             if (denumerator < 0)
             {
                 denumerator = denumerator * -1;
@@ -136,7 +119,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
             int numerator = f1.Numerator * f2.Denominator;
             int denumerator = f1.Denominator * f2.Numerator;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
             if (denumerator < 0)
             {
                 denumerator = denumerator * -1;
@@ -175,7 +158,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
 
             int numerator = f1.Numerator * f2;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
             n.Numerator = numerator / gcd;
             n.Denominator = f1.Denominator / gcd;
 
@@ -188,7 +171,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
 
             int denomirator = f1.Denominator * f2;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(f1.Numerator), Math.Abs(denomirator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(f1.Numerator), Math.Abs(denomirator));
             n.Numerator = f1.Numerator / gcd;
             n.Denominator = denomirator / gcd;
 
@@ -222,7 +205,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
 
             int numerator = f1.Numerator * f2;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Denominator));
             n.Numerator = numerator / gcd;
             n.Denominator = f1.Denominator / gcd;
 
@@ -235,7 +218,7 @@ namespace Encryption
             FractionalNumber n = new FractionalNumber();
 
             int numerator = f1.Denominator * f2;
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Numerator));
+            int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(f1.Numerator));
             n.Numerator = numerator / gcd;
             n.Denominator = f1.Numerator / gcd;
 
