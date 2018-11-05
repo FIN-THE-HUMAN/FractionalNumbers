@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +23,11 @@ namespace Encryption
             }
 
             return a + b;
+        }
+
+        public static int Cells(uint i)
+        {
+            return (i == 0) ? 1 : (int)Math.Ceiling(Math.Log10(i + 0.5));
         }
     }
 }
