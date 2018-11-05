@@ -7,15 +7,26 @@ namespace Encryption
         public int Numerator { get; private set; }
         public int Denominator { get; private set; }
 
-        private FractionalNumber() { }
-
-        public static FractionalNumber GetInstance()
+        public FractionalNumber()
         {
-            FractionalNumber n = new FractionalNumber();
-            n.Numerator = 0;
-            n.Denominator = 1;
+            Numerator = 0;
+            Denominator = 1;
+        }
 
-            return n;
+        public FractionalNumber(int numerator, int denumerator)
+        {
+            if (denumerator == 0) throw new DivideByZeroException();
+            if (numerator == 0) denumerator = 1;
+            if (denumerator < 0)
+            {
+                denumerator = denumerator * -1;
+                numerator = numerator * -1;
+            }
+
+            FractionalNumber n = new FractionalNumber();
+            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
+            Numerator = numerator / gcd;
+            Denominator = denumerator / gcd;
         }
 
         private static int GetGreatestCommonDivisor(int a, int b)
@@ -33,24 +44,6 @@ namespace Encryption
             }
 
             return a + b;
-        }
-
-        public static FractionalNumber GetInstance(int numerator, int denumerator)
-        {
-            if (denumerator == 0) throw new DivideByZeroException();
-            if (numerator == 0) denumerator = 1;
-            if (denumerator < 0)
-            {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
-            }
-
-            FractionalNumber n = new FractionalNumber();
-            int gcd = GetGreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            n.Numerator = numerator / gcd;
-            n.Denominator = denumerator / gcd;
-
-            return n;
         }
 
         public float ToFloat()
