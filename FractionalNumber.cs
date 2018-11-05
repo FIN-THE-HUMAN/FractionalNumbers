@@ -30,6 +30,7 @@ namespace Encryption
             {
                 Numerator = 0;
                 Denominator = 1;
+                return;
             }
 
             FractionalNumber n = Create(numerator, denumerator);
