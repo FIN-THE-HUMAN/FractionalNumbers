@@ -25,14 +25,19 @@ namespace Encryption
             return $"{c.Real} {sign} {c.Imaginary}*i ";
         }
 
-        public static int Concatinate(this int i, int j)
+        public static uint ToUint(this int i)
         {
-            return i * (int)Math.Pow(10, (int)Math.Ceiling(Math.Log10(j))) + j;
+            return (uint)Math.Abs(i);
+        } 
+
+        public static uint Concatinate(this uint i, uint j)
+        {
+            return i * (uint)Math.Pow(10, Utils.Cells(j)) + j;
         }
 
-        public static int ConcatinateS(this int i, int j)
+        public static uint ConcatinateS(this uint i, uint j)
         {
-            return Convert.ToInt32(i.ToString() + j.ToString());
+            return Convert.ToUInt32(i.ToString() + j.ToString());
         }
 
         public static FractionalNumber ToFractional(this float f)
