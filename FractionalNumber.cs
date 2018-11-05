@@ -16,16 +16,16 @@ namespace Encryption
         public FractionalNumber(int numerator, int denumerator)
         {
             if (denumerator == 0) throw new DivideByZeroException();
-            if (numerator == 0) denumerator = 1;
-            if (denumerator < 0)
+            if (numerator == 0)
             {
-                denumerator = denumerator * -1;
-                numerator = numerator * -1;
+                Numerator = 0;
+                Denominator = 1;
             }
 
+            int sign = Math.Sign(denumerator);
             int gcd = Utils.GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denumerator));
-            Numerator = numerator / gcd;
-            Denominator = denumerator / gcd;
+            Numerator = numerator / gcd * sign;
+            Denominator = denumerator / gcd * sign;
         }
 
         public float ToFloat()
