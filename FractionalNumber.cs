@@ -407,6 +407,19 @@ namespace Encryption
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is FractionalNumber)) return false;
+            var f = (FractionalNumber)obj;
+            return Numerator == f.Numerator && Denominator == f.Denominator;
+        }
+
+        public override int GetHashCode()
+        {
+            return Numerator ^ Denominator;
+        }
+
         public override string ToString()
         {
             return $"{Numerator}/{Denominator}";
