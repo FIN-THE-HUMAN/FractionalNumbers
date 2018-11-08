@@ -8,17 +8,14 @@ namespace Encryption
 {
     public static class StringExtentions
     {
-
         /// <summary>
         /// Возвращает массив, содержащий все элементы исходного массива и элемент item
         /// </summary>
         private static T[] ArrayWith<T>(this T[] array, T item)
         {
-            T[] result;
-            T[] buffer;
-            buffer = new T[array.Length];
+            T[] buffer = new T[array.Length];
             Array.Copy(array, buffer, array.Length);
-            result = new T[buffer.Length + 1];
+            T[] result = new T[buffer.Length + 1];
             Array.Copy(buffer, result, buffer.Length);
             result[result.Length - 1] = item;
             return result;
