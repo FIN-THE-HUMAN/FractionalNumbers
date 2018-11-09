@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Encryption
 {
@@ -54,13 +54,17 @@ namespace Encryption
             return Numerator / (double)Denominator;
         }
 
+        public int ToInt()
+        {
+            return Numerator / Denominator;
+        }
+
         public static FractionalNumber operator +(FractionalNumber f1, FractionalNumber f2)
         {
             int numerator;
             int denumerator;
             if (f1.Denominator == f2.Denominator)
             {
-
                 numerator = f1.Numerator + f2.Numerator;
                 denumerator = f1.Denominator;
             }
@@ -79,7 +83,6 @@ namespace Encryption
             int denumerator;
             if (f1.Denominator == f2.Denominator)
             {
-
                 numerator = f1.Numerator - f2.Numerator;
                 denumerator = f1.Denominator;
             }
@@ -237,6 +240,16 @@ namespace Encryption
             return f1.ToDouble() <= f2;
         }
 
+        public static bool operator ==(FractionalNumber f1, int f2)
+        {
+            return f1.ToDouble() == f2;
+        }
+
+        public static bool operator !=(FractionalNumber f1, int f2)
+        {
+            return f1.ToDouble() != f2;
+        }
+
         public static FractionalNumber operator +(FractionalNumber f1, float f2)
         {
             return f1 + f2.ToFractional();
@@ -319,42 +332,52 @@ namespace Encryption
 
         public static bool operator >(float f1, FractionalNumber f2)
         {
-            return f1 > f2.ToDouble();
+            return f1 > f2.ToFloat();
         }
 
         public static bool operator <(float f1, FractionalNumber f2)
         {
-            return f1 < f2.ToDouble();
+            return f1 < f2.ToFloat();
         }
 
         public static bool operator >=(float f1, FractionalNumber f2)
         {
-            return f1 >= f2.ToDouble();
+            return f1 >= f2.ToFloat();
         }
 
         public static bool operator <=(float f1, FractionalNumber f2)
         {
-            return f1 <= f2.ToDouble();
+            return f1 <= f2.ToFloat();
         }
 
         public static bool operator >(FractionalNumber f1, float f2)
         {
-            return f1.ToDouble() > f2;
+            return f1.ToFloat() > f2;
         }
 
         public static bool operator <(FractionalNumber f1, float f2)
         {
-            return f1.ToDouble() < f2;
+            return f1.ToFloat() < f2;
         }
 
         public static bool operator >=(FractionalNumber f1, float f2)
         {
-            return f1.ToDouble() >= f2;
+            return f1.ToFloat() >= f2;
         }
 
         public static bool operator <=(FractionalNumber f1, float f2)
         {
-            return f1.ToDouble() <= f2;
+            return f1.ToFloat() <= f2;
+        }
+
+        public static bool operator ==(FractionalNumber f1, float f2)
+        {
+            return f1.ToFloat() == f2;
+        }
+
+        public static bool operator !=(FractionalNumber f1, float f2)
+        {
+            return f1.ToFloat() != f2;
         }
 
         public static bool operator >(double f1, FractionalNumber f2)
@@ -397,12 +420,27 @@ namespace Encryption
             return f1.ToDouble() <= f2;
         }
 
+        public static bool operator ==(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() == f2;
+        }
+
+        public static bool operator !=(FractionalNumber f1, double f2)
+        {
+            return f1.ToDouble() != f2;
+        }
+
         public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, float coef)
         {
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
         }
 
         public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, double coef)
+        {
+            return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
+        }
+
+        public static FractionalNumber LineInterpolation(FractionalNumber first, FractionalNumber last, FractionalNumber coef)
         {
             return (first > last) ? coef * first + (1 - coef) * last : coef * last + (1 - coef) * first;
         }
