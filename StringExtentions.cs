@@ -9,7 +9,7 @@ namespace Encryption
     public static class StringExtentions
     {
         /// <summary>
-        /// Возвращает массив, содержащий все элементы исходного массива и элемент item
+        /// Returns array contains all original array elements and item element
         /// </summary>
         private static T[] ArrayWith<T>(this T[] array, T item)
         {
